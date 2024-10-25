@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="style.css"> 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -15,7 +15,7 @@
         </nav>
     </header>
    
-    <!-- Collapsible Sidebar -->
+   
     <div class="sidebar" id="mySidebar">
         <a href="javascript:void(0)" class="close-btn" id="closeSidebar">&times;</a>
         <a href="#graphs">Graphs</a>
@@ -23,10 +23,10 @@
         <a href="#settings">Settings</a>
     </div>
 
-    <!-- Open Sidebar Button -->
+    
     <span class="open-sidebar-btn" id="openSidebar">&#9776;</span>
 
-    <!-- Main Content -->
+  
     
         <div id="mainContent"></div>
         
@@ -56,7 +56,7 @@
             </div>
         </div>
         
-        <div id="loading" style="display: none;">Loading...</div> <!-- Added loading indicator -->
+        <div id="loading" style="display: none;">Loading...</div> 
         
         <canvas id="myChart" width="400" height="200"></canvas>
         <canvas id="myBarChart" width="400" height="200"></canvas>
@@ -66,17 +66,17 @@
         <p>&copy; 2024 Innishas Dashboard. All rights reserved.</p>
     </footer>
 
-    <!-- Chart.js and socket.io Scripts -->
+   
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/socket.io/socket.io.js"></script>
 
     <script>
-        // Line chart setup
+        
         const ctx = document.getElementById('myChart').getContext('2d');
         let myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: [],  // Empty initially, filled by real-time data
+                labels: [],  
                 datasets: [{
                     label: 'User Statistics',
                     data: [],
@@ -94,12 +94,12 @@
             }
         });
 
-        // Bar chart setup
+      
         const barCtx = document.getElementById('myBarChart').getContext('2d');
         let myBarChart = new Chart(barCtx, {
             type: 'bar',
             data: {
-                labels: [],  // Empty initially, filled by real-time data
+                labels: [],  
                 datasets: [{
                     label: 'Monthly Sales',
                     data: [],
@@ -118,53 +118,53 @@
             }
         });
 
-        // Establish socket connection
+        
         const socket = io();
 
-        // Listen for real-time data from server
+        
         socket.on('chartData', (data) => {
-            document.getElementById('loading').style.display = 'none';  // Hide loading spinner
-            updateCharts(data);  // Update both line and bar charts with new data
+            document.getElementById('loading').style.display = 'none';  
+            updateCharts(data);  
         });
 
-        // Function to update the charts with new data
+       
         function updateCharts(data) {
-            // Update line chart data
+            
             myChart.data.labels = data.labels;
             myChart.data.datasets[0].data = data.values;
             myChart.update();
 
-            // Update bar chart data (same data for demonstration)
+            
             myBarChart.data.labels = data.labels;
             myBarChart.data.datasets[0].data = data.values;
             myBarChart.update();
         }
 
-        // Handle filter change
+       
         document.getElementById('dataFilter').addEventListener('change', function() {
-            document.getElementById('loading').style.display = 'block';  // Show loading spinner
+            document.getElementById('loading').style.display = 'block';  
             const filterValue = this.value;
-            socket.emit('filterData', filterValue);  // Send filter request to server
+            socket.emit('filterData', filterValue);  
         });
 
-        // Logout button functionality
+      
         document.getElementById('logoutButton').addEventListener('click', function() {
-            window.location.href = 'login.html';  // Redirect to login page
+            window.location.href = 'login.html'; e
         });
         
-        // Sidebar functionality
+       
         const sidebar = document.getElementById('mySidebar');
         const mainContent = document.getElementById('mainContent');
         const openSidebarBtn = document.getElementById('openSidebar');
         const closeSidebarBtn = document.getElementById('closeSidebar');
 
-        // Open sidebar
+        
         openSidebarBtn.addEventListener('click', () => {
             sidebar.style.width = "250px";
             mainContent.style.marginLeft = "250px";
         });
 
-        // Close sidebar
+       
         closeSidebarBtn.addEventListener('click', () => {
             sidebar.style.width = "0";
             mainContent.style.marginLeft = "0";
