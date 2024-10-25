@@ -1,9 +1,9 @@
-/* Global Styling */
+
 * {
     box-sizing: border-box;
 }
 
-/* General Body Styling */
+
 body {
     margin: 0;
     padding: 0;
@@ -17,21 +17,21 @@ body {
     text-align: center;
 }
 
-/* Form Styling for Login Page */
+
 form {
     width: 100%;
     max-width: 400px;
-    padding: 40px 30px; /* Increased padding for aesthetics */
+    padding: 40px 30px; 
     background-color: #fff;
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    margin-top: 60px; /* Maintain spacing */
+    margin-top: 60px; 
 }
 
 
 form h2 {
     margin-bottom: 20px;
-    font-size: 32px; /* Increased font size */
+    font-size: 32px; 
     color: #3498db; /* Vibrant color */
     font-weight: 700; /* Bold text */
     text-transform: uppercase; /* Uppercase text */
