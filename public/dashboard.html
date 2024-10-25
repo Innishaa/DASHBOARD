@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Dashboard</h1>
+        <nav>
+            <button id="logoutButton">Logout</button>
+        </nav>
+    </header>
+   
+    <!-- Collapsible Sidebar -->
+    <div class="sidebar" id="mySidebar">
+        <a href="javascript:void(0)" class="close-btn" id="closeSidebar">&times;</a>
+        <a href="#graphs">Graphs</a>
+        <a href="#tables">Tables</a>
+        <a href="#settings">Settings</a>
+    </div>
+
+    <!-- Open Sidebar Button -->
+    <span class="open-sidebar-btn" id="openSidebar">&#9776;</span>
+
+    <!-- Main Content -->
+    
+        <div id="mainContent"></div>
+        
+        <label for="dataFilter">Select Data Range:</label>
+        <select id="dataFilter">
+            <option value="all">All Data</option>
+            <option value="lastWeek">Last Week</option>
+            <option value="lastMonth">Last Month</option>
+        </select>
+    
+        <div class="metric-box">
+            <div class="metric yellow">
+              <p>Total Users</p>
+              <h3>1253.89</h3>
+            </div>
+            <div class="metric teal">
+              <p>Sessions Active</p>
+              <h3>987</h3>
+            </div>
+            <div class="metric pink">
+              <p>Tasks Completed</p>
+              <h3>45.64</h3>
+            </div>
+            <div class="metric navy">
+              <p>Data Analyzed</p>
+              <h3>97.32</h3>
+            </div>
+        </div>
+        
+        <div id="loading" style="display: none;">Loading...</div> <!-- Added loading indicator -->
+        
+        <canvas id="myChart" width="400" height="200"></canvas>
+        <canvas id="myBarChart" width="400" height="200"></canvas>
+    </div>
+    
+    <footer>
+        <p>&copy; 2024 Innishas Dashboard. All rights reserved.</p>
+    </footer>
+
+    <!-- Chart.js and socket.io Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+        // Line chart setup
+        const ctx = document.getElementById('myChart').getContext('2d');
+        let myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],  // Empty initially, filled by real-time data
+                datasets: [{
+                    label: 'User Statistics',
+                    data: [],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Bar chart setup
+        const barCtx = document.getElementById('myBarChart').getContext('2d');
+        let myBarChart = new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: [],  // Empty initially, filled by real-time data
+                datasets: [{
+                    label: 'Monthly Sales',
+                    data: [],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Establish socket connection
+        const socket = io();
+
+        // Listen for real-time data from server
+        socket.on('chartData', (data) => {
+            document.getElementById('loading').style.display = 'none';  // Hide loading spinner
+            updateCharts(data);  // Update both line and bar charts with new data
+        });
+
+        // Function to update the charts with new data
+        function updateCharts(data) {
+            // Update line chart data
+            myChart.data.labels = data.labels;
+            myChart.data.datasets[0].data = data.values;
+            myChart.update();
+
+            // Update bar chart data (same data for demonstration)
+            myBarChart.data.labels = data.labels;
+            myBarChart.data.datasets[0].data = data.values;
+            myBarChart.update();
+        }
+
+        // Handle filter change
+        document.getElementById('dataFilter').addEventListener('change', function() {
+            document.getElementById('loading').style.display = 'block';  // Show loading spinner
+            const filterValue = this.value;
+            socket.emit('filterData', filterValue);  // Send filter request to server
+        });
+
+        // Logout button functionality
+        document.getElementById('logoutButton').addEventListener('click', function() {
+            window.location.href = 'login.html';  // Redirect to login page
+        });
+        
+        // Sidebar functionality
+        const sidebar = document.getElementById('mySidebar');
+        const mainContent = document.getElementById('mainContent');
+        const openSidebarBtn = document.getElementById('openSidebar');
+        const closeSidebarBtn = document.getElementById('closeSidebar');
+
+        // Open sidebar
+        openSidebarBtn.addEventListener('click', () => {
+            sidebar.style.width = "250px";
+            mainContent.style.marginLeft = "250px";
+        });
+
+        // Close sidebar
+        closeSidebarBtn.addEventListener('click', () => {
+            sidebar.style.width = "0";
+            mainContent.style.marginLeft = "0";
+        });
+    </script>
+</body>
+</html>
