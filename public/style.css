@@ -32,12 +32,12 @@ form {
 form h2 {
     margin-bottom: 20px;
     font-size: 32px; 
-    color: #3498db; /* Vibrant color */
-    font-weight: 700; /* Bold text */
-    text-transform: uppercase; /* Uppercase text */
-    letter-spacing: 2px; /* Letter spacing */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-    position: relative; /* Allows for pseudo-elements */
+    color: #3498db; 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); 
+    position: relative; 
 }
 
 
@@ -55,8 +55,8 @@ form h2::after {
 
 form input[type="text"], form input[type="password"] {
     width: 100%;
-    padding: 12px 16px; /* Adjusted padding */
-    margin: 12px 0; /* Consistent margin */
+    padding: 12px 16px; 
+    margin: 12px 0; 
     border-radius: 8px;
     border: 1px solid #ccc;
     font-size: 16px;
@@ -69,10 +69,10 @@ form input[type="text"]:focus, form input[type="password"]:focus {
     outline: none;
 }
 
-/* Submit Button */
+
 form button {
     width: 100%;
-    padding: 16px; /* Increased padding */
+    padding: 16px; 
     background-color: #3498db;
     color: white;
     border: none;
@@ -81,7 +81,7 @@ form button {
     font-size: 16px;
     font-weight: 600;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-top: 20px; /* Consistent spacing */
+    margin-top: 20px; 
 }
 
 form button:hover {
@@ -90,16 +90,16 @@ form button:hover {
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Footer Text */
+
 form p {
     margin-top: 20px;
     font-size: 14px;
     color: #777;
 }
 
-/* Header Styling for Dashboard */
+
 header {
-    background-color: #2c3e50; /* Darker header */
+    background-color: #2c3e50; 
     color: #ecf0f1;
     padding: 20px;
     display: flex;
@@ -107,17 +107,16 @@ header {
     align-items: center;
     width: 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 60px; /* Space between header and content */
+    margin-bottom: 60px; 
 }
 
-/* Welcome Text Styling */
+
 header h1 {
-    margin: 0 auto; /* Center welcome message */
+    margin: 0 auto; 
     font-size: 32px;
     flex-grow: 1;
 }
 
-/* Logout Button Styling */
 header nav {
     position: absolute;
     top: 20px;
@@ -125,7 +124,7 @@ header nav {
 }
 
 header nav button {
-    background-color: #3498db; /* Softer blue */
+    background-color: #3498db; 
     color: white;
     border: none;
     padding: 10px 20px;
@@ -133,17 +132,17 @@ header nav button {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-right: 20px; /* Space between button and edge */
+    margin-right: 20px; 
 }
 
 header nav button:hover {
-    background-color: #2980b9; /* Darker blue on hover */
+    background-color: #2980b9; 
 }
 
 /* Sidebar Styles */
 .sidebar {
     height: 100%;
-    width: 250px; /* Expanded width */
+    width: 250px; 
     position: fixed;
     z-index: 1;
     top: 0;
@@ -151,7 +150,7 @@ header nav button:hover {
     background-color: #111;
     overflow-x: hidden;
     padding-top: 20px;
-    transition: width 0.3s ease; /* Transition on width */
+    transition: width 0.3s ease;
 }
 
 .sidebar a {
@@ -176,19 +175,18 @@ header nav button:hover {
     cursor: pointer;
 }
 
-/* When the sidebar is collapsed */
+
 .sidebar.collapsed {
     width: 0;
-    display: none; /* Hide the sidebar */
-}
+    display: none; 
 
-/* Main Content */
+
 #mainContent {
-    padding: 20px; /* Adjusted padding */
-    margin-top: 20px; /* Space above content */
+    padding: 20px; 
+    margin-top: 20px; 
 }
 
-/* Sidebar Toggle Classes */
+
 .open-sidebar-btn {
     position: absolute;
     top: 20px;
@@ -198,19 +196,19 @@ header nav button:hover {
     color: #111;
 }
 
-/* Style for Main Content when Sidebar is Open */
+
 #main-content {
-    margin-left: 250px; /* Space for sidebar */
+    margin-left: 250px;
     padding: 15px;
     transition: margin-left 0.3s ease;
 }
 
-/* Metric Box Styles */
+
 .metric-box {
     display: flex;
     justify-content: space-around;
-    padding: 40px; /* Increased padding */
-    margin: 40px 0; /* Space between sections */
+    padding: 40px; 
+    margin: 40px 0; 
 }
 
 .metric {
@@ -226,7 +224,7 @@ header nav button:hover {
 .metric p {
     font-size: 16px;
     margin: 0 0 10px 0;
-    color: #ecf0f1; /* Light color for titles */
+    color: #ecf0f1; 
 }
 
 .metric h3 {
@@ -234,45 +232,45 @@ header nav button:hover {
     margin: 0;
 }
 
-/* Color Variations for Different Metrics */
-.metric.yellow { background-color: #f1c40f; } /* Total Users */
-.metric.teal { background-color: #1abc9c; } /* Sessions Active */
-.metric.pink { background-color: #e84393; } /* Tasks Completed */
-.metric.navy { background-color: #34495e; } /* Data Analyzed */
 
-/* Footer Styling */
+.metric.yellow { background-color: #f1c40f; } 
+.metric.teal { background-color: #1abc9c; } 
+.metric.pink { background-color: #e84393; } 
+.metric.navy { background-color: #34495e; } 
+
+
 footer {
-    background-color: #2c3e50; /* Footer color */
+    background-color: #2c3e50; 
     color: #ecf0f1;
-    height: 40px; /* Footer height */
+    height: 40px; 
     padding: 10px;
     text-align: center;
     width: 100%;
     box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 60px; /* Space between content and footer */
+    margin-top: 60px; 
 }
 
-/* Footer Text Styling */
+
 footer p {
     margin: 0;
     font-size: 14px;
 }
 
-/* Chart Styling */
+
 canvas {
     max-width: 60%;
-    margin: 50px 0; /* Margin above and below graphs */
+    margin: 50px 0; 
     transition: all 0.3s ease;
 }
 
-/* Loading Spinner Styling */
+
 #loading {
     font-size: 18px;
     color: #3498db;
     margin-bottom: 20px;
 }
 
-/* Media Queries */
+
 @media (max-width: 768px) {
     header {
         flex-direction: column;
@@ -280,21 +278,22 @@ canvas {
     }
 
     form, canvas {
-        width: 95%; /* Full width on smaller screens */
+        width: 95%; 
     }
 
     .sidebar {
-        width: 200px; /* Reduced sidebar width */
+        width: 200px; 
     }
 
-    /* Stack metrics vertically on smaller screens */
+    
     .metric-box {
         flex-direction: column;
         align-items: center;
     }
 
     .metric {
-        width: 90%; /* Most of the screen width */
-        margin-bottom: 20px; /* Space between metrics */
+        width: 90%; 
+        margin-bottom: 20px; 
     }
+}
 }
