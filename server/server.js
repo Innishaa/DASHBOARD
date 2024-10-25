@@ -9,7 +9,7 @@ const io = socketIo(server);
 
 
 
-const publicDir = '/Users/innisha./DASHBOARD/public';
+const publicDir = '/Users/innisha./gdsc/public';
 console.log(`Serving static files from: ${publicDir}`);
 
 
